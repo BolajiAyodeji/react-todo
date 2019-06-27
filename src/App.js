@@ -8,25 +8,24 @@ class App extends Component {
     super()
     this.state = {
       items: [],
-      currrentItem: {text: '', key: ''},
+      currentItem: {text: '', key: ''},
     }
   }
   handleInput = (e) => {
     const itemText = e.target.value
-    const currrentItem = { text: itemText, key: Date.now() }
-    this.state({
-      currrentItem,
+    const currentItem = { text: itemText, key: Date.now() }
+    this.setState({
+      currentItem,
     })
   }
   addItem = (e) => {
     e.preventDefault();
-    const newItem = this.state.currrentItem
+    const newItem = this.state.currentItem
     if (newItem.text !== '') {
-      console.log('new i')
       const items = [...this.state.items, newItem]
-      this.state({
+      this.setState({
         items: items,
-        currrentItem: { text: '', key: '' }
+        currentItem: { text: '', key: '' }
       })
     }
   }
@@ -37,7 +36,7 @@ class App extends Component {
          addItem={this.addItem}
          inputElement={this.inputElement}
          handleInput={this.handleInput}
-         currrentItem={this.currrentItem}
+         currentItem={this.state.currentItem}
         />
         <TodoItems entries={this.state.items} />
       </div>
